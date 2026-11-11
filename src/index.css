@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+/* Moxie VDL: warm paper, hard ink, saturated accents, offset shadows. */
+@theme {
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+
+  --color-paper: #fbf5ea;
+  --color-ink: #16120d;
+  --color-tangerine: #ff6b2c;
+  --color-lilac: #b79cff;
+  --color-lime: #c8f169;
+  --color-sky: #7fd4ff;
+  --color-blush: #ffc2d4;
+
+  --radius-blob: 2rem;
+
+  --shadow-pop: 6px 6px 0 0 var(--color-ink);
+  --shadow-pop-sm: 3px 3px 0 0 var(--color-ink);
+
+  --animate-marquee: marquee 28s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-spin-slow: spin 18s linear infinite;
+  --animate-wiggle: wiggle 1.2s ease-in-out infinite;
+
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    50% { transform: translateY(-14px) rotate(3deg); }
+  }
+  @keyframes wiggle {
+    50% { transform: rotate(-4deg) scale(1.04); }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+  ::selection {
+    @apply bg-tangerine text-paper;
+  }
+}
+
+@utility btn {
+  @apply inline-flex items-center gap-2 rounded-full border-2 border-ink bg-tangerine px-6 py-3 font-semibold shadow-pop-sm transition-all
+    hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-pop active:translate-x-0.5 active:translate-y-0.5 active:shadow-none;
+}
+
+@utility btn-ghost {
+  @apply btn bg-paper;
+}
+
+@utility card {
+  @apply rounded-blob border-2 border-ink p-6 shadow-pop transition-transform hover:-rotate-1;
+}
+
+@utility tag {
+  @apply inline-block rounded-full border-2 border-ink px-3 py-1 font-mono text-xs uppercase tracking-wider;
+}
